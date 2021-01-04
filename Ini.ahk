@@ -2,6 +2,7 @@
     * Class: Ini
     *   A static class based utility wrapper for the ini commands of ahk
     *   Set up do work directly with ahk objects
+    *   @Version 1.0 Release
 */
 class Ini {
 
@@ -94,7 +95,7 @@ class Ini {
         * Params:
         *   iniFile - the path to the ini
         *   section - the section within the ini
-        *   object  - the associative array to written to the iniFile
+        *   object  - the array to written to the iniFile
         * Return:
         *   nothing
     */
@@ -105,6 +106,22 @@ class Ini {
             pairs .= k . "=" . e
         }
         IniWrite, % pairs, % iniFile, % section
+    }
+
+
+    /**
+        * Method: write2dimArray(iniFile, object)
+        *   writes a two dimensional array to the iniFile
+        *   allows an easy dump
+        * Params:
+        *   iniFile - the path to the ini
+        *   object  - the two dimensional array to written to the iniFile
+        * Return:
+        *   nothing
+    */
+    write2dimArray(iniFile, object){
+        for sec, element in object
+            this.writeSection(iniFile, sec, element)
     }
 
 
@@ -194,6 +211,19 @@ class Ini {
         */
         writeSection(section, object){
             return, Ini.writeSection(this.iniFile, section, object)
+        }
+
+        /**
+            * Method: write2dimArray(object)
+            *   writes a two dimensional array to the iniFile
+            *   allows an easy dump
+            * Params:
+            *   object  - the two dimensional array to written to the iniFile
+            * Return:
+            *   nothing
+        */
+        write2dimArray(object){
+            return, Ini.write2dimArray(this.iniFile, object)
         }
 
     }
