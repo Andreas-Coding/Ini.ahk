@@ -199,4 +199,17 @@ class Ini {
     }
 
 
+    /**
+        * Method: __New()
+        *   blocks the creation of instances of the Ini class.
+        **  To create instances bound to a specific iniFile, use new Ini.Instance(iniFile)
+        * Params:
+        * Return:
+        *   False
+    */
+    __New(){
+        return, ""
+    }
+
+
 }
